@@ -60,7 +60,7 @@ def meanSquaredDisplacement(finalt):
 
 meanSquareValues = []
 iteration = 0
-for x in range(0, 300):
+for x in range(0, 100):
     steps = 400
     randomWalk(steps)
     j = 1
@@ -72,10 +72,14 @@ for x in range(0, 300):
     else:
         while (j < steps):
             currentVal = meanSquaredDisplacement(j)
-            meanSquareValues[j] = (meanSquareValues[j] + currentVal)/2
+            meanSquareValues[j] = (meanSquareValues[j] + currentVal)
             j += 1
     iteration +=1
 
-plt.plot([i for i in range(400)],meanSquareValues, '-')
+for x in range(0,400):
+    meanSquareValues[x] = meanSquareValues[x]/iteration
+
+plt.plot([i for i in range(400)], meanSquareValues, '-')
+plt.plot([i for i in range(400)], [i for i in range(400)], '-')
 plt.xlim(0, 400)
 plt.ylim(0, 400)
